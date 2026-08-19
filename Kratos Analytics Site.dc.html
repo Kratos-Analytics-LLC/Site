@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Kratos Analytics — Score-as-a-service para cooperativas</title>
+<meta name="description" content="Scorecard con datos transaccionales tipo Bre-B para cooperativas de ahorro y crédito del Llano. Score de riesgo explicable para aprobar, negar o definir monto.">
+<meta property="og:title" content="Kratos Analytics — Score-as-a-service">
+<meta property="og:description" content="Ver riesgo donde el buró tradicional no ve nada.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="icon" href="assets/kratos-favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; background: #0D0D0D; }
+  body { margin: 0; background: #0D0D0D; color: #EDEAE3; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #EDEAE3; text-decoration: none; border-bottom: 1px solid rgba(237,234,227,.28); }
+  a:hover { border-bottom-color: #C9A227; }
+  ::selection { background: #C9A227; color: #0D0D0D; }
+  :focus-visible { outline: 2px solid #C9A227; outline-offset: 3px; }
+  @keyframes kratos-pulse { 0%,100% { opacity: .3; } 50% { opacity: .8; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-hero-node] { animation: none !important; opacity: .55 !important; }
+  }
+</style>
+</helmet>
+
+<div data-kratos-root="1" style="background:#0D0D0D; color:#EDEAE3; min-height:100vh; font-family:Inter,system-ui,sans-serif;">
+
+  <header style="position:sticky; top:0; z-index:60; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px clamp(16px,4vw,48px); background:rgba(13,13,13,.92); backdrop-filter:blur(10px); border-bottom:1px solid #2C2C2A;">
+    <a href="#top" aria-label="Kratos Analytics" style="display:flex; align-items:center; gap:12px; border:0;">
+      <img src="assets/kratos-mark-mono-ceniza.svg" alt="Kratos Analytics" width="30" height="30" style="display:block; width:30px; height:30px;">
+      <span style="display:flex; flex-direction:column; line-height:1;">
+        <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; letter-spacing:.08em;">KRATOS</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.26em; color:rgba(237,234,227,.6); margin-top:3px;">ANALYTICS</span>
+      </span>
+    </a>
+    <nav style="display:flex; align-items:center; gap:clamp(12px,2.2vw,30px); flex-wrap:wrap; justify-content:flex-end;">
+      <a href="#what" data-i18n="nav.what" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">Qué hacemos</a>
+      <a href="#how" data-i18n="nav.how" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">Cómo funciona</a>
+      <a href="#score" data-i18n="nav.score" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">Score</a>
+      <a href="#offer" data-i18n="nav.offer" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">La oferta</a>
+      <a href="#contact" data-i18n="nav.contact" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">Contacto</a>
+      <div role="group" aria-label="Idioma" style="display:flex; align-items:center; border:1px solid #2C2C2A; border-radius:2px; overflow:hidden;">
+        <button type="button" data-lang="es" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:#EDEAE3; color:#0D0D0D; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">ES</button>
+        <button type="button" data-lang="en" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:transparent; color:rgba(237,234,227,.7); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <section id="top" style="position:relative; min-height:min(100svh,880px); display:flex; align-items:flex-end; overflow:hidden; background:#0D0D0D; border-bottom:1px solid #2C2C2A;">
+    <video data-hero-video muted="{{ true }}" loop="{{ true }}" autoPlay="{{ true }}" playsinline preload="auto" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.34; filter:grayscale(.7) contrast(1.08) brightness(.75);">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4" type="video/mp4">
+    </video>
+    <svg data-hero-net aria-hidden="true" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0; width:100%; height:100%; opacity:.5; mix-blend-mode:screen;">
+      <g stroke="#EDEAE3" stroke-opacity=".14" stroke-width="1">
+        <line x1="100" y1="80" x2="260" y2="160"></line>
+        <line x1="260" y1="160" x2="200" y2="300"></line>
+        <line x1="260" y1="160" x2="380" y2="220"></line>
+        <line x1="380" y1="220" x2="480" y2="90"></line>
+        <line x1="380" y1="220" x2="620" y2="190"></line>
+        <line x1="620" y1="190" x2="560" y2="340"></line>
+        <line x1="620" y1="190" x2="760" y2="140"></line>
+        <line x1="760" y1="140" x2="860" y2="280"></line>
+        <line x1="760" y1="140" x2="980" y2="110"></line>
+        <line x1="980" y1="110" x2="1040" y2="320"></line>
+        <line x1="980" y1="110" x2="1120" y2="180"></line>
+        <line x1="480" y1="90" x2="760" y2="140"></line>
+        <line x1="200" y1="300" x2="560" y2="340"></line>
+        <line x1="860" y1="280" x2="1040" y2="320"></line>
+      </g>
+      <g fill="#EDEAE3">
+        <circle data-hero-node="1" cx="100" cy="80" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:0s;"></circle>
+        <circle data-hero-node="1" cx="260" cy="160" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.3s;"></circle>
+        <circle data-hero-node="1" cx="200" cy="300" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.6s;"></circle>
+        <circle data-hero-node="1" cx="380" cy="220" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.9s;"></circle>
+        <circle data-hero-node="1" cx="480" cy="90" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.2s;"></circle>
+        <circle data-hero-node="1" cx="620" cy="190" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.5s;"></circle>
+        <circle data-hero-node="1" cx="560" cy="340" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.8s;"></circle>
+        <circle data-hero-node="1" cx="760" cy="140" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.1s;"></circle>
+        <circle data-hero-node="1" cx="860" cy="280" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.4s;"></circle>
+        <circle data-hero-node="1" cx="980" cy="110" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.7s;"></circle>
+        <circle data-hero-node="1" cx="1040" cy="320" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:3s;"></circle>
+        <circle data-hero-node="1" cx="1120" cy="180" r="3" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:3.3s;"></circle>
+      </g>
+    </svg>
+    <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(180deg, #0D0D0D 0%, rgba(13,13,13,.7) 32%, rgba(13,13,13,.88) 72%, #0D0D0D 100%);"></div>
+    <div aria-hidden="true" style="position:absolute; inset:0; background:radial-gradient(115% 82% at 76% 22%, rgba(13,13,13,0) 24%, #0D0D0D 100%);"></div>
+    <div style="position:relative; width:100%; max-width:1200px; margin:0 auto; padding:clamp(96px,16vh,180px) clamp(20px,5vw,64px) clamp(48px,7vh,88px);">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:26px;">
+        <span aria-hidden="true" style="display:block; flex:none; width:56px; height:2px; background:#C9A227;"></span>
+        <span data-i18n="hero.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.72);">Kratos Analytics LLC · Score-as-a-service</span>
+      </div>
+      <h1 data-i18n="hero.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.025em; line-height:1.02; font-size:clamp(38px,7.2vw,84px); margin:0 0 26px; max-width:18ch; text-wrap:balance;">Ver riesgo donde el buró tradicional no ve nada</h1>
+      <p data-i18n="hero.sub" style="font-size:clamp(15px,1.5vw,19px); line-height:1.6; color:rgba(237,234,227,.8); max-width:62ch; margin:0 0 38px; text-wrap:pretty;">Un scorecard con datos transaccionales tipo Bre-B para cooperativas de ahorro y crédito que hoy pierden negocio bueno porque el buró tradicional no puede puntuar a sus asociados sin historial.</p>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px;">
+        <a href="mailto:kratosanalyticsllc@gmail.com?subject=Kratos%20Analytics%20-%2020%20minutos" data-i18n="hero.cta" style="display:inline-block; padding:15px 26px; background:#EDEAE3; color:#0D0D0D; border:1px solid #EDEAE3; border-radius:2px; font-weight:500; font-size:15px;" style-hover="border-color:#C9A227;">Agendar 20 minutos</a>
+        <a href="#score" data-i18n="hero.cta2" style="display:inline-block; padding:15px 22px; color:#EDEAE3; border:1px solid #2C2C2A; border-radius:2px; font-size:15px;" style-hover="border-color:#EDEAE3;">Ver el Score</a>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:clamp(20px,4vw,56px); margin-top:clamp(44px,7vh,76px); padding-top:26px; border-top:1px solid #2C2C2A; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; color:rgba(237,234,227,.62); font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">
+        <span data-i18n="hero.s1">Cooperativas de ahorro y crédito · Llano / Orinoquía</span>
+        <span data-i18n="hero.s2">Score explicable: aprobar, negar, definir monto</span>
+        <span data-i18n="hero.s3">No prestamos y no asumimos riesgo de balance</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="what" style="background:#0D0D0D;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(76px,11vw,150px) clamp(20px,5vw,64px);">
+      <p data-i18n="what.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Qué hacemos</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(22px,3.4vw,60px); align-items:start;">
+        <div>
+          <h2 data-i18n="what.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(28px,3.8vw,46px); line-height:1.1; margin:0 0 20px; max-width:22ch;">Score-as-a-service. El modelo es el producto.</h2>
+          <p data-i18n="what.body" style="font-size:16.5px; line-height:1.62; color:rgba(237,234,227,.8); margin:0 0 18px; max-width:56ch;">La cooperativa entrega datos que ya posee —transaccionales, sociodemográficos, comportamiento de pago interno— y devolvemos un score de riesgo explicable para aprobar, negar o definir monto.</p>
+          <p data-i18n="what.body2" style="font-size:15px; line-height:1.62; color:rgba(237,234,227,.6); margin:0; max-width:56ch;">No prestamos, no captamos y no asumimos riesgo de balance. Sin producto que implementar ni core que cambiar: un score y los factores que lo sustentan.</p>
+        </div>
+        <div style="border:1px solid #2C2C2A; border-radius:2px; padding:clamp(22px,2.6vw,34px); background:#0D0D0D;">
+          <p data-i18n="what.flow.k" style="margin:0 0 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">CÓMO SE MUEVE UNA DECISIÓN</p>
+          <ol style="margin:0; padding:0; list-style:none; display:grid; gap:16px;">
+            <li style="display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.45);">01</span>
+              <span data-i18n="what.step1" style="font-size:14.5px; line-height:1.55; color:rgba(237,234,227,.86);">La cooperativa envía datos anonimizados bajo acuerdo de encargado.</span>
+            </li>
+            <li style="display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; padding-top:16px; border-top:1px solid #2C2C2A;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.45);">02</span>
+              <span data-i18n="what.step2" style="font-size:14.5px; line-height:1.55; color:rgba(237,234,227,.86);">Ajustamos el scorecard sobre su propia cartera y reportamos AUC, Gini, KS y PSI.</span>
+            </li>
+            <li style="display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; padding-top:16px; border-top:1px solid #2C2C2A;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.45);">03</span>
+              <span data-i18n="what.step3" style="font-size:14.5px; line-height:1.55; color:rgba(237,234,227,.86);">El score llega por API o archivo por lotes, con los factores que lo movieron.</span>
+            </li>
+            <li style="display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; padding-top:16px; border-top:1px solid #2C2C2A;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.45);">04</span>
+              <span data-i18n="what.step4" style="font-size:14.5px; line-height:1.55; color:rgba(237,234,227,.86);">El comité de crédito decide — y puede justificar la decisión ante el asociado y el regulador.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="data" style="background:#0D0D0D; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(76px,11vw,150px) clamp(20px,5vw,64px);">
+      <p data-i18n="data.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Qué datos usamos</p>
+      <h2 data-i18n="data.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(27px,3.6vw,44px); line-height:1.12; margin:0 0 48px; max-width:24ch;">Cuatro familias de señal que la cooperativa ya tiene.</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:clamp(14px,1.6vw,22px);">
+        <article style="background:#2C2C2A; border:1px solid transparent; border-radius:2px; padding:clamp(22px,2.4vw,30px); display:flex; flex-direction:column; gap:14px; transition:border-color .25s ease;" style-hover="border-color:#EDEAE3;">
+          <p style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">01</p>
+          <h3 data-i18n="data.c1.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; line-height:1.3; letter-spacing:-.02em; margin:0;">Flujo de caja</h3>
+          <p data-i18n="data.c1.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">Ingreso promedio, estacionalidad, volatilidad.</p>
+        </article>
+        <article style="background:#2C2C2A; border:1px solid transparent; border-radius:2px; padding:clamp(22px,2.4vw,30px); display:flex; flex-direction:column; gap:14px; transition:border-color .25s ease;" style-hover="border-color:#EDEAE3;">
+          <p style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">02</p>
+          <h3 data-i18n="data.c2.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; line-height:1.3; letter-spacing:-.02em; margin:0;">Comportamiento transaccional tipo Bre-B</h3>
+          <p data-i18n="data.c2.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">Frecuencia, regularidad, contrapartes.</p>
+        </article>
+        <article style="background:#2C2C2A; border:1px solid transparent; border-radius:2px; padding:clamp(22px,2.4vw,30px); display:flex; flex-direction:column; gap:14px; transition:border-color .25s ease;" style-hover="border-color:#EDEAE3;">
+          <p style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">03</p>
+          <h3 data-i18n="data.c3.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; line-height:1.3; letter-spacing:-.02em; margin:0;">Comportamiento de pago interno</h3>
+          <p data-i18n="data.c3.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">Puntualidad, mora previa, uso de cupo.</p>
+        </article>
+        <article style="background:#2C2C2A; border:1px solid transparent; border-radius:2px; padding:clamp(22px,2.4vw,30px); display:flex; flex-direction:column; gap:14px; transition:border-color .25s ease;" style-hover="border-color:#EDEAE3;">
+          <p style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">04</p>
+          <h3 data-i18n="data.c4.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; line-height:1.3; letter-spacing:-.02em; margin:0;">Sociodemográfico</h3>
+          <p data-i18n="data.c4.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">Ocupación, cadena productiva, ubicación, antigüedad.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" style="background:#0D0D0D; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(76px,11vw,150px) clamp(20px,5vw,64px);">
+      <p data-i18n="how.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Cómo funciona</p>
+      <h2 data-i18n="how.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(28px,3.8vw,46px); line-height:1.1; margin:0 0 16px; max-width:22ch;">El scoring, explicado sin tecnicismos.</h2>
+      <p data-i18n="how.sub" style="font-size:16px; line-height:1.62; color:rgba(237,234,227,.72); max-width:64ch; margin:0 0 clamp(34px,4.4vw,56px);">No hace falta saber de modelos para entender esto. Así funciona, en el orden en que pasa.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(18px,2vw,28px); margin-bottom:clamp(40px,5vw,64px);">
+        <div>
+          <h3 data-i18n="how.q1.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16.5px; margin:0 0 8px;">¿Qué es un score?</h3>
+          <p data-i18n="how.q1.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">Un número que resume, con base en datos reales, qué tan probable es que alguien pague un crédito a tiempo. No reemplaza el juicio del comité — lo informa con evidencia.</p>
+        </div>
+        <div>
+          <h3 data-i18n="how.q2.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16.5px; margin:0 0 8px;">¿De dónde salen los datos?</h3>
+          <p data-i18n="how.q2.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">De la cooperativa misma: sus movimientos de cuenta, su historial de pagos internos, datos básicos del asociado. No compramos datos externos ni consultamos el buró — por eso podemos puntuar a quien no tiene historial crediticio formal.</p>
+        </div>
+        <div>
+          <h3 data-i18n="how.q3.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16.5px; margin:0 0 8px;">¿Cómo se calcula?</h3>
+          <p data-i18n="how.q3.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">Se agrupan los solicitantes en rangos (ej. "antigüedad menor a 6 meses") y se mide, en la historia real de la cooperativa, qué tan bien paga cada grupo. Los rangos que pagan mejor suman puntos; los que pagan peor, restan — y cada punto queda documentado.</p>
+        </div>
+        <div>
+          <h3 data-i18n="how.q4.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16.5px; margin:0 0 8px;">¿Y el segundo modelo, el GBM?</h3>
+          <p data-i18n="how.q4.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">Ese no se usa para decidir. Es una prueba de techo: un modelo más complejo que muestra cuánta señal hay en los datos que el modelo simple todavía no aprovecha.</p>
+        </div>
+        <div>
+          <h3 data-i18n="how.q5.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16.5px; margin:0 0 8px;">¿Qué pasa después del score?</h3>
+          <p data-i18n="how.q5.b" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.78);">La cooperativa define los puntos de corte (aprobar automático arriba de cierto puntaje, revisar manual en el rango medio, negar por debajo de un mínimo). El comité de crédito siempre tiene la última palabra.</p>
+        </div>
+      </div>
+      <div style="border:1px solid #2C2C2A; border-radius:2px; padding:clamp(22px,2.6vw,32px);">
+        <p data-i18n="how.gloss.k" style="margin:0 0 18px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">GLOSARIO RÁPIDO</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;">
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.auc.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">AUC</b> — <span data-i18n="how.gloss.auc.v">qué tan bien separa el modelo a quien paga de quien no. De 0,5 (una moneda al aire) a 1,0 (perfecto). Un modelo útil suele estar entre 0,70 y 0,85.</span></p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.gini.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">Gini</b> — <span data-i18n="how.gloss.gini.v">la misma idea en otra escala: Gini = 2×AUC − 1.</span></p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.ks.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">KS</b> — <span data-i18n="how.gloss.ks.v">qué tan lejos quedan, en el punto de mayor diferencia, los buenos pagadores de los malos.</span></p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.psi.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">PSI</b> — <span data-i18n="how.gloss.psi.v">alarma temprana: mide si el modelo se está desactualizando frente a la realidad.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="score" style="background:#0D0D0D; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(76px,11vw,150px) clamp(20px,5vw,64px);">
+      <p data-i18n="score.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Score</p>
+      <h2 data-i18n="score.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(28px,3.8vw,48px); line-height:1.1; margin:0 0 16px; max-width:22ch;">Lo que el modelo separa, en números.</h2>
+      <p data-i18n="score.sub" style="font-size:16px; line-height:1.62; color:rgba(237,234,227,.72); max-width:60ch; margin:0 0 clamp(34px,4.4vw,56px);">Una corrida de demo sintético: un scorecard interpretable, un challenger de gradient boosting y lo que la diferencia significa en la mesa de aprobación.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(252px,1fr)); gap:clamp(14px,1.6vw,22px); align-items:stretch;">
+        <article style="border:1px solid #2C2C2A; border-radius:2px; padding:clamp(24px,2.6vw,34px); display:flex; flex-direction:column; gap:12px; transition:border-color .25s ease;" style-hover="border-color:#EDEAE3;">
+          <p data-i18n="score.t1.k" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">SCORECARD · INTERPRETABLE</p>
+          <p data-countup="0.74" data-countup-decimals="2" style="margin:6px 0 0; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(44px,5.6vw,64px); line-height:.92; letter-spacing:-.03em; font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">0.00</p>
+          <p data-i18n="score.t1.v" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(237,234,227,.68); font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">AUC · Gini 0,48</p>
+          <svg viewBox="0 0 300 148" aria-hidden="true" style="width:100%; height:auto; margin-top:6px;">
+            <g font-family="'IBM Plex Mono',monospace" font-size="10" fill="rgba(237,234,227,.75)">
+              <text data-i18n="score.chart1.l1" x="0" y="11">Flujo de caja</text>
+              <text data-i18n="score.chart1.l2" x="0" y="45">Transaccional</text>
+              <text data-i18n="score.chart1.l3" x="0" y="79">Pago interno</text>
+              <text data-i18n="score.chart1.l4" x="0" y="113">Sociodemo.</text>
+            </g>
+            <g>
+              <rect x="112" y="1" width="115.6" height="12" fill="#EDEAE3" fill-opacity=".85"></rect>
+              <rect x="112" y="35" width="153" height="12" fill="#EDEAE3" fill-opacity=".85"></rect>
+              <rect x="112" y="69" width="136" height="12" fill="#EDEAE3" fill-opacity=".85"></rect>
+              <rect x="112" y="103" width="74.8" height="12" fill="#EDEAE3" fill-opacity=".85"></rect>
+            </g>
+            <g font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(237,234,227,.5)">
+              <text x="232" y="10">34</text>
+              <text x="270" y="44">45</text>
+              <text x="253" y="78">40</text>
+              <text x="192" y="112">22</text>
+            </g>
+          </svg>
+          <p data-i18n="score.t1.b" style="margin:auto 0 0; padding-top:18px; border-top:1px solid #2C2C2A; font-size:14px; line-height:1.6; color:rgba(237,234,227,.7);">Puntos por rango, legible para el comité de crédito. Es el que se despliega primero.</p>
+        </article>
+        <article style="border:1px solid #2C2C2A; border-radius:2px; padding:clamp(24px,2.6vw,34px); display:flex; flex-direction:column; gap:12px; background:#2C2C2A; transition:border-color .25s ease;" style-hover="border-color:#EDEAE3;">
+          <p data-i18n="score.t2.k" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.62);">CHALLENGER · GBM</p>
+          <p data-countup="0.87" data-countup-decimals="2" style="margin:6px 0 0; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(44px,5.6vw,64px); line-height:.92; letter-spacing:-.03em; font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">0.00</p>
+          <p data-i18n="score.t2.v" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(237,234,227,.72); font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">AUC · Gini 0,74</p>
+          <svg viewBox="0 0 300 150" aria-hidden="true" style="width:100%; height:auto; margin-top:6px;">
+            <line x1="20" y1="130" x2="290" y2="10" stroke="rgba(237,234,227,.28)" stroke-width="1" stroke-dasharray="3,4"></line>
+            <path d="M20,130 L20,130 C70,68 120,30 180,18 C220,12 260,9 290,6 L290,130 Z" fill="#0D0D0D" fill-opacity=".55"></path>
+            <path d="M20,130 C70,68 120,30 180,18 C220,12 260,9 290,6" fill="none" stroke="#EDEAE3" stroke-width="2"></path>
+            <line x1="20" y1="10" x2="20" y2="130" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
+            <line x1="20" y1="130" x2="290" y2="130" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
+          </svg>
+          <p data-i18n="score.t2.b" style="margin:auto 0 0; padding-top:18px; border-top:1px solid rgba(237,234,227,.16); font-size:14px; line-height:1.6; color:rgba(237,234,227,.76);">Gradient boosting marca el techo y muestra cuánta señal deja sobre la mesa el modelo simple.</p>
+        </article>
+        <article style="border:1px solid #2C2C2A; border-radius:2px; padding:clamp(24px,2.6vw,34px); display:flex; flex-direction:column; gap:12px; transition:border-color .25s ease;" style-hover="border-color:#EDEAE3;">
+          <p data-i18n="score.t3.k" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.62);">EN LA MESA DE APROBACIÓN</p>
+          <p data-countup="4.4" data-countup-decimals="1" data-countup-suffix="%" style="margin:6px 0 0; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(44px,5.6vw,64px); line-height:.92; letter-spacing:-.03em; font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">0.0%</p>
+          <p data-i18n="score.t3.v" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(237,234,227,.68); font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">mora esperada al 61% de aprobación · 18,2% sin modelo</p>
+          <svg viewBox="0 0 300 150" aria-hidden="true" style="width:100%; height:auto; margin-top:6px;">
+            <line x1="20" y1="10" x2="20" y2="130" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
+            <line x1="20" y1="130" x2="290" y2="130" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
+            <path d="M20,124 C80,120 140,108 180,100 C220,92 260,55 290,18" fill="none" stroke="#EDEAE3" stroke-width="2"></path>
+            <line x1="180" y1="100" x2="180" y2="130" stroke="#C9A227" stroke-width="1" stroke-dasharray="2,3"></line>
+            <line x1="20" y1="100" x2="180" y2="100" stroke="#C9A227" stroke-width="1" stroke-dasharray="2,3"></line>
+            <circle cx="180" cy="100" r="4" fill="none" stroke="#C9A227" stroke-width="1.4"></circle>
+            <text x="184" y="96" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#C9A227">61% / 4,4%</text>
+          </svg>
+          <p data-i18n="score.t3.b" style="margin:auto 0 0; padding-top:18px; border-top:1px solid #2C2C2A; font-size:14px; line-height:1.6; color:rgba(237,234,227,.7);">El mismo volumen de aprobaciones con una cuarta parte de la pérdida: el trabajo lo hace el ordenamiento, no el corte.</p>
+        </article>
+      </div>
+      <p data-i18n="score.dis" style="margin:24px 0 0; font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.7; color:rgba(237,234,227,.5); max-width:70ch;">Resultados sobre 20.000 asociados sintéticos — demo metodológico, no cartera real.</p>
+    </div>
+  </section>
+
+  <section id="offer" style="background:#2C2C2A; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(76px,11vw,150px) clamp(20px,5vw,64px); display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(24px,4vw,64px); align-items:start;">
+      <div>
+        <p data-i18n="offer.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">La oferta</p>
+        <h2 data-i18n="offer.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(28px,4vw,50px); line-height:1.08; margin:0 0 22px; max-width:20ch;">Una prueba de concepto gratis, sobre tu propia cartera.</h2>
+        <p data-i18n="offer.body" style="font-size:16.5px; line-height:1.62; color:rgba(237,234,227,.8); margin:0 0 18px; max-width:54ch;">Sin costo y sin compromiso: corremos el modelo sobre la cartera histórica anonimizada de la cooperativa y mostramos, con sus números reales, cuánto sube la aprobación sin subir la mora.</p>
+        <p data-i18n="offer.body2" style="font-size:15px; line-height:1.62; color:rgba(237,234,227,.62); margin:0 0 30px; max-width:54ch;">El informe de lift es tuyo, sigas o no. Si el modelo no le gana a lo que la cooperativa ya hace, lo decimos.</p>
+        <a href="mailto:kratosanalyticsllc@gmail.com?subject=Kratos%20Analytics%20-%20PoC" data-i18n="offer.cta" style="display:inline-block; padding:15px 26px; background:#EDEAE3; color:#0D0D0D; border:1px solid #EDEAE3; border-radius:2px; font-weight:500; font-size:15px;" style-hover="border-color:#C9A227;">Agendar 20 minutos</a>
+      </div>
+      <div style="display:grid; gap:14px;">
+        <div style="border:1px solid rgba(237,234,227,.16); border-radius:2px; padding:22px;">
+          <p data-i18n="offer.f1.k" style="margin:0 0 8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:rgba(237,234,227,.5);">QUÉ NECESITAMOS</p>
+          <p data-i18n="offer.f1.v" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.82);">Registros históricos de crédito anonimizados con su desenlace: quién pagó y quién no. Nada que identifique al asociado.</p>
+        </div>
+        <div style="border:1px solid rgba(237,234,227,.16); border-radius:2px; padding:22px;">
+          <p data-i18n="offer.f2.k" style="margin:0 0 8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:rgba(237,234,227,.5);">QUÉ RECIBES</p>
+          <p data-i18n="offer.f2.v" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.82);">Discriminación y calibración sobre tu cartera, curva de aprobación contra mora y el punto de corte que recomendaríamos.</p>
+        </div>
+        <div style="border:1px solid rgba(237,234,227,.16); border-radius:2px; padding:22px;">
+          <p data-i18n="offer.f3.k" style="margin:0 0 8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:rgba(237,234,227,.5);">DESPUÉS</p>
+          <p data-i18n="offer.f3.v" style="margin:0; font-size:14.5px; line-height:1.6; color:rgba(237,234,227,.82);">Endpoint de score o archivo por lotes, monitoreado en cada corrida. La cooperativa sigue decidiendo; el modelo solo ordena.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="geo" style="background:#0D0D0D; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(66px,9vw,120px) clamp(20px,5vw,64px); display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(30px,4vw,64px); align-items:center;">
+      <div>
+        <p data-i18n="geo.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Dónde operamos</p>
+        <h2 data-i18n="geo.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(26px,3.4vw,42px); line-height:1.14; margin:0 0 20px; max-width:22ch;">Hiperlocal por diseño: Llano y Orinoquía, no Colombia entera.</h2>
+        <p data-i18n="geo.body" style="margin:0; font-size:15.5px; line-height:1.62; color:rgba(237,234,227,.76); max-width:52ch;">Conocemos la estacionalidad agropecuaria, las cadenas productivas y los ciclos de pago de cada departamento donde trabajamos — el foso que un modelo genérico nacional no puede replicar.</p>
+        <ul style="margin:22px 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; color:rgba(237,234,227,.7);">
+          <li style="border:1px solid #2C2C2A; border-radius:2px; padding:6px 12px;">Meta</li>
+          <li style="border:1px solid #2C2C2A; border-radius:2px; padding:6px 12px;">Casanare</li>
+          <li style="border:1px solid #2C2C2A; border-radius:2px; padding:6px 12px;">Putumayo</li>
+          <li style="border:1px solid #2C2C2A; border-radius:2px; padding:6px 12px;">Caquetá</li>
+          <li style="border:1px solid #2C2C2A; border-radius:2px; padding:6px 12px;">Guainía</li>
+        </ul>
+      </div>
+      <svg viewBox="0 0 400 300" aria-hidden="true" style="width:100%; height:auto; max-width:420px; justify-self:center;">
+        <polygon points="60,40 260,20 340,90 300,220 160,280 40,190 20,110" fill="#2C2C2A" stroke="rgba(237,234,227,.25)" stroke-width="1"></polygon>
+        <g fill="#EDEAE3">
+          <circle cx="150" cy="90" r="4"></circle>
+          <circle cx="230" cy="60" r="4"></circle>
+          <circle cx="70" cy="220" r="4"></circle>
+          <circle cx="140" cy="230" r="4"></circle>
+          <circle cx="300" cy="140" r="4"></circle>
+        </g>
+        <g font-family="'IBM Plex Mono',monospace" font-size="11" fill="rgba(237,234,227,.85)">
+          <text x="158" y="87">Meta</text>
+          <text x="238" y="57">Casanare</text>
+          <text x="20" y="238">Putumayo</text>
+          <text x="80" y="248">Caquetá</text>
+          <text x="248" y="137">Guainía</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section id="other" style="background:#0D0D0D; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(66px,9vw,120px) clamp(20px,5vw,64px);">
+      <p data-i18n="other.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">También construimos</p>
+      <h2 data-i18n="other.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(26px,3.4vw,42px); line-height:1.14; margin:0 0 20px; max-width:28ch;">Automatización con rigor, en más de un dominio.</h2>
+      <p data-i18n="other.body" style="margin:0 0 32px; font-size:15.5px; line-height:1.62; color:rgba(237,234,227,.76); max-width:64ch;">El scoring para cooperativas es el foco de Kratos Analytics. Estos son otros proyectos del mismo equipo, con el mismo estándar de rigor técnico y evidencia sobre datos reales.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:clamp(14px,1.6vw,22px);">
+        <article style="background:#2C2C2A; border-radius:2px; padding:clamp(20px,2.2vw,26px); display:flex; flex-direction:column; gap:12px;">
+          <h3 data-i18n="other.c1.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; margin:0;">AgentRails</h3>
+          <p data-i18n="other.c1.b" style="margin:0; font-size:14px; line-height:1.58; color:rgba(237,234,227,.78);">Gobernanza de agentes de IA: política declarativa, dry-run, ledger de auditoría y circuit breaker antes de que un agente ejecute una acción.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:6px;">
+            <a href="https://pypi.org/project/kratos-agentrails/" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; border-bottom:1px solid rgba(237,234,227,.28);">PyPI</a>
+            <a href="https://github.com/Kratos-Analytics-LLC/AgentRails" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; border-bottom:1px solid rgba(237,234,227,.28);">GitHub</a>
+            <a href="https://news.ycombinator.com/threads?id=KratosAnalytics" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; border-bottom:1px solid rgba(237,234,227,.28);">Hacker News</a>
+          </div>
+        </article>
+        <article style="background:#2C2C2A; border-radius:2px; padding:clamp(20px,2.2vw,26px); display:flex; flex-direction:column; gap:12px;">
+          <h3 data-i18n="other.c2.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; margin:0;">Kratos Alpaca</h3>
+          <p data-i18n="other.c2.b" style="margin:0; font-size:14px; line-height:1.58; color:rgba(237,234,227,.78);">Tres motores de trading algorítmico (momentum, tendencia, mean-reversion) sobre Alpaca Paper Trading, validados con backtests sobre datos reales 2016–2026.</p>
+        </article>
+        <article style="background:#2C2C2A; border-radius:2px; padding:clamp(20px,2.2vw,26px); display:flex; flex-direction:column; gap:12px;">
+          <h3 data-i18n="other.c3.t" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; margin:0;">Asesor de portafolio</h3>
+          <p data-i18n="other.c3.b" style="margin:0; font-size:14px; line-height:1.58; color:rgba(237,234,227,.78);">Herramienta de análisis de valoración fundamental para inversión personal. No es asesoría financiera licenciada — es apoyo informativo basado en reglas transparentes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="data-handling" style="background:#2C2C2A; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(66px,9vw,120px) clamp(20px,5vw,64px);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(22px,3.4vw,60px); align-items:start;">
+        <div>
+          <p data-i18n="law.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Manejo de datos</p>
+          <h2 data-i18n="law.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(24px,3vw,36px); line-height:1.14; margin:0; max-width:24ch;">La cooperativa conserva la propiedad y el control de los datos de sus asociados en todo momento.</h2>
+        </div>
+        <div style="display:grid; gap:16px;">
+          <p data-i18n="law.body" style="margin:0; font-size:16px; line-height:1.62; color:rgba(237,234,227,.8); max-width:58ch;">Tratamiento bajo acuerdo de encargado, regido por la Ley 1581 de 2012 de Colombia: datos anonimizados o seudonimizados, cifrados en tránsito y en reposo, y minimizados a lo que el modelo realmente necesita.</p>
+          <ul style="margin:0; padding:0; list-style:none; display:grid; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.6; color:rgba(237,234,227,.72);">
+            <li data-i18n="law.l1" style="padding-top:12px; border-top:1px solid rgba(237,234,227,.16);">Finalidad limitada al scoring: sin reventa ni uso secundario</li>
+            <li data-i18n="law.l2" style="padding-top:12px; border-top:1px solid rgba(237,234,227,.16);">Eliminación a solicitud y al terminar la relación</li>
+            <li data-i18n="law.l3" style="padding-top:12px; border-top:1px solid rgba(237,234,227,.16);">Cada score trazable a los factores que lo produjeron</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background:#0D0D0D; border-top:1px solid #2C2C2A;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(76px,11vw,150px) clamp(20px,5vw,64px);">
+      <p data-i18n="contact.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Contacto</p>
+      <h2 data-i18n="contact.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.024em; font-size:clamp(30px,4.6vw,58px); line-height:1.06; margin:0 0 22px; max-width:20ch;">Tráenos las solicitudes que hoy estás negando.</h2>
+      <p data-i18n="contact.sub" style="font-size:16.5px; line-height:1.62; color:rgba(237,234,227,.76); margin:0 0 34px; max-width:56ch;">Veinte minutos para ver si tu cartera tiene historial suficiente para una prueba de concepto. Si no lo tiene, te decimos qué empezar a capturar.</p>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
+        <a href="mailto:kratosanalyticsllc@gmail.com?subject=Kratos%20Analytics%20-%2020%20minutos" data-i18n="contact.cta" style="display:inline-block; padding:16px 28px; background:#EDEAE3; color:#0D0D0D; border:1px solid #EDEAE3; border-radius:2px; font-weight:500; font-size:15px;" style-hover="border-color:#C9A227;">Agendar 20 minutos</a>
+        <a href="mailto:kratosanalyticsllc@gmail.com" style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.02em;">kratosanalyticsllc@gmail.com</a>
+        <a href="tel:+15717995315" style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.02em;">+1 571 799 5315</a>
+      </div>
+      <p style="margin:34px 0 0; font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.9; color:rgba(237,234,227,.6);">Alejandro Calderón<br>Kratos Analytics LLC</p>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #2C2C2A; background:#0D0D0D;">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(36px,5vw,64px) clamp(20px,5vw,64px); display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:28px;">
+      <div style="display:flex; align-items:flex-start; gap:14px;">
+        <img src="assets/kratos-mark-mono-ceniza.svg" alt="" width="32" height="32" style="display:block; width:32px; height:32px; opacity:.9;">
+        <div>
+          <p style="margin:0 0 4px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; letter-spacing:.08em;">KRATOS ANALYTICS</p>
+          <p data-i18n="footer.tag" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.6);">Fuerza controlada.</p>
+        </div>
+      </div>
+      <div style="display:grid; gap:8px; font-size:13.5px; color:rgba(237,234,227,.7);">
+        <a href="#how" data-i18n="nav.how" style="border:0;">Cómo funciona</a>
+        <a href="#score" data-i18n="nav.score" style="border:0;">Score</a>
+        <a href="#offer" data-i18n="nav.offer" style="border:0;">La oferta</a>
+        <a href="mailto:kratosanalyticsllc@gmail.com" style="border:0;">kratosanalyticsllc@gmail.com</a>
+        <a href="tel:+15717995315" style="border:0;">+1 571 799 5315</a>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:14px;">
+        <div role="group" aria-label="Idioma" style="display:flex; align-items:center; border:1px solid #2C2C2A; border-radius:2px; overflow:hidden;">
+          <button type="button" data-lang="es" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:#EDEAE3; color:#0D0D0D; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">ES</button>
+          <button type="button" data-lang="en" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:transparent; color:rgba(237,234,227,.7); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">EN</button>
+        </div>
+        <p data-i18n="footer.copy" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:rgba(237,234,227,.45);">© 2026 Kratos Analytics LLC. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;es&quot;,&quot;en&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Language&quot;},&quot;heroNetworkMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+const I18N = {
+  es: {
+    "nav.what": "Qué hacemos", "nav.how": "Cómo funciona", "nav.score": "Score", "nav.offer": "La oferta", "nav.contact": "Contacto",
+    "hero.eyebrow": "Kratos Analytics LLC · Score-as-a-service",
+    "hero.title": "Ver riesgo donde el buró tradicional no ve nada",
+    "hero.sub": "Un scorecard con datos transaccionales tipo Bre-B para cooperativas de ahorro y crédito que hoy pierden negocio bueno porque el buró tradicional no puede puntuar a sus asociados sin historial.",
+    "hero.cta": "Agendar 20 minutos", "hero.cta2": "Ver el Score",
+    "hero.s1": "Cooperativas de ahorro y crédito · Llano / Orinoquía",
+    "hero.s2": "Score explicable: aprobar, negar, definir monto",
+    "hero.s3": "No prestamos y no asumimos riesgo de balance",
+    "what.eyebrow": "Qué hacemos",
+    "what.title": "Score-as-a-service. El modelo es el producto.",
+    "what.body": "La cooperativa entrega datos que ya posee —transaccionales, sociodemográficos, comportamiento de pago interno— y devolvemos un score de riesgo explicable para aprobar, negar o definir monto.",
+    "what.body2": "No prestamos, no captamos y no asumimos riesgo de balance. Sin producto que implementar ni core que cambiar: un score y los factores que lo sustentan.",
+    "what.flow.k": "CÓMO SE MUEVE UNA DECISIÓN",
+    "what.step1": "La cooperativa envía datos anonimizados bajo acuerdo de encargado.",
+    "what.step2": "Ajustamos el scorecard sobre su propia cartera y reportamos AUC, Gini, KS y PSI.",
+    "what.step3": "El score llega por API o archivo por lotes, con los factores que lo movieron.",
+    "what.step4": "El comité de crédito decide — y puede justificar la decisión ante el asociado y el regulador.",
+    "data.eyebrow": "Qué datos usamos",
+    "data.title": "Cuatro familias de señal que la cooperativa ya tiene.",
+    "data.c1.t": "Flujo de caja", "data.c1.b": "Ingreso promedio, estacionalidad, volatilidad.",
+    "data.c2.t": "Comportamiento transaccional tipo Bre-B", "data.c2.b": "Frecuencia, regularidad, contrapartes.",
+    "data.c3.t": "Comportamiento de pago interno", "data.c3.b": "Puntualidad, mora previa, uso de cupo.",
+    "data.c4.t": "Sociodemográfico", "data.c4.b": "Ocupación, cadena productiva, ubicación, antigüedad.",
+    "score.eyebrow": "Score",
+    "score.title": "Lo que el modelo separa, en números.",
+    "score.sub": "Una corrida de demo sintético: un scorecard interpretable, un challenger de gradient boosting y lo que la diferencia significa en la mesa de aprobación.",
+    "score.t1.k": "SCORECARD · INTERPRETABLE", "score.t1.v": "AUC · Gini 0,48",
+    "score.t1.b": "Puntos por rango, legible para el comité de crédito. Es el que se despliega primero.",
+    "score.chart1.l1": "Flujo de caja", "score.chart1.l2": "Transaccional", "score.chart1.l3": "Pago interno", "score.chart1.l4": "Sociodemo.",
+    "score.t2.k": "CHALLENGER · GBM", "score.t2.v": "AUC · Gini 0,74",
+    "score.t2.b": "Gradient boosting marca el techo y muestra cuánta señal deja sobre la mesa el modelo simple.",
+    "score.t3.k": "EN LA MESA DE APROBACIÓN", "score.t3.v": "mora esperada al 61% de aprobación · 18,2% sin modelo",
+    "score.t3.b": "El mismo volumen de aprobaciones con una cuarta parte de la pérdida: el trabajo lo hace el ordenamiento, no el corte.",
+    "score.dis": "Resultados sobre 20.000 asociados sintéticos — demo metodológico, no cartera real.",
+    "offer.eyebrow": "La oferta",
+    "offer.title": "Una prueba de concepto gratis, sobre tu propia cartera.",
+    "offer.body": "Sin costo y sin compromiso: corremos el modelo sobre la cartera histórica anonimizada de la cooperativa y mostramos, con sus números reales, cuánto sube la aprobación sin subir la mora.",
+    "offer.body2": "El informe de lift es tuyo, sigas o no. Si el modelo no le gana a lo que la cooperativa ya hace, lo decimos.",
+    "offer.cta": "Agendar 20 minutos",
+    "offer.f1.k": "QUÉ NECESITAMOS",
+    "offer.f1.v": "Registros históricos de crédito anonimizados con su desenlace: quién pagó y quién no. Nada que identifique al asociado.",
+    "offer.f2.k": "QUÉ RECIBES",
+    "offer.f2.v": "Discriminación y calibración sobre tu cartera, curva de aprobación contra mora y el punto de corte que recomendaríamos.",
+    "offer.f3.k": "DESPUÉS",
+    "offer.f3.v": "Endpoint de score o archivo por lotes, monitoreado en cada corrida. La cooperativa sigue decidiendo; el modelo solo ordena.",
+    "geo.eyebrow": "Dónde operamos",
+    "geo.title": "Hiperlocal por diseño: Llano y Orinoquía, no Colombia entera.",
+    "geo.body": "Conocemos la estacionalidad agropecuaria, las cadenas productivas y los ciclos de pago de cada departamento donde trabajamos — el foso que un modelo genérico nacional no puede replicar.",
+    "how.eyebrow": "Cómo funciona",
+    "how.title": "El scoring, explicado sin tecnicismos.",
+    "how.sub": "No hace falta saber de modelos para entender esto. Así funciona, en el orden en que pasa.",
+    "how.q1.t": "¿Qué es un score?",
+    "how.q1.b": "Un número que resume, con base en datos reales, qué tan probable es que alguien pague un crédito a tiempo. No reemplaza el juicio del comité — lo informa con evidencia.",
+    "how.q2.t": "¿De dónde salen los datos?",
+    "how.q2.b": "De la cooperativa misma: sus movimientos de cuenta, su historial de pagos internos, datos básicos del asociado. No compramos datos externos ni consultamos el buró — por eso podemos puntuar a quien no tiene historial crediticio formal.",
+    "how.q3.t": "¿Cómo se calcula?",
+    "how.q3.b": "Se agrupan los solicitantes en rangos (ej. \"antigüedad menor a 6 meses\") y se mide, en la historia real de la cooperativa, qué tan bien paga cada grupo. Los rangos que pagan mejor suman puntos; los que pagan peor, restan — y cada punto queda documentado.",
+    "how.q4.t": "¿Y el segundo modelo, el GBM?",
+    "how.q4.b": "Ese no se usa para decidir. Es una prueba de techo: un modelo más complejo que muestra cuánta señal hay en los datos que el modelo simple todavía no aprovecha.",
+    "how.q5.t": "¿Qué pasa después del score?",
+    "how.q5.b": "La cooperativa define los puntos de corte (aprobar automático arriba de cierto puntaje, revisar manual en el rango medio, negar por debajo de un mínimo). El comité de crédito siempre tiene la última palabra.",
+    "how.gloss.k": "GLOSARIO RÁPIDO",
+    "how.gloss.auc.k": "AUC", "how.gloss.auc.v": "qué tan bien separa el modelo a quien paga de quien no. De 0,5 (una moneda al aire) a 1,0 (perfecto). Un modelo útil suele estar entre 0,70 y 0,85.",
+    "how.gloss.gini.k": "Gini", "how.gloss.gini.v": "la misma idea en otra escala: Gini = 2×AUC − 1.",
+    "how.gloss.ks.k": "KS", "how.gloss.ks.v": "qué tan lejos quedan, en el punto de mayor diferencia, los buenos pagadores de los malos.",
+    "how.gloss.psi.k": "PSI", "how.gloss.psi.v": "alarma temprana: mide si el modelo se está desactualizando frente a la realidad.",
+    "other.eyebrow": "También construimos",
+    "other.title": "Automatización con rigor, en más de un dominio.",
+    "other.body": "El scoring para cooperativas es el foco de Kratos Analytics. Estos son otros proyectos del mismo equipo, con el mismo estándar de rigor técnico y evidencia sobre datos reales.",
+    "other.c1.t": "AgentRails",
+    "other.c1.b": "Gobernanza de agentes de IA: política declarativa, dry-run, ledger de auditoría y circuit breaker antes de que un agente ejecute una acción.",
+    "other.c2.t": "Kratos Alpaca",
+    "other.c2.b": "Tres motores de trading algorítmico (momentum, tendencia, mean-reversion) sobre Alpaca Paper Trading, validados con backtests sobre datos reales 2016–2026.",
+    "other.c3.t": "Asesor de portafolio",
+    "other.c3.b": "Herramienta de análisis de valoración fundamental para inversión personal. No es asesoría financiera licenciada — es apoyo informativo basado en reglas transparentes.",
+    "law.eyebrow": "Manejo de datos",
+    "law.title": "La cooperativa conserva la propiedad y el control de los datos de sus asociados en todo momento.",
+    "law.body": "Tratamiento bajo acuerdo de encargado, regido por la Ley 1581 de 2012 de Colombia: datos anonimizados o seudonimizados, cifrados en tránsito y en reposo, y minimizados a lo que el modelo realmente necesita.",
+    "law.l1": "Finalidad limitada al scoring: sin reventa ni uso secundario",
+    "law.l2": "Eliminación a solicitud y al terminar la relación",
+    "law.l3": "Cada score trazable a los factores que lo produjeron",
+    "contact.eyebrow": "Contacto",
+    "contact.title": "Tráenos las solicitudes que hoy estás negando.",
+    "contact.sub": "Veinte minutos para ver si tu cartera tiene historial suficiente para una prueba de concepto. Si no lo tiene, te decimos qué empezar a capturar.",
+    "contact.cta": "Agendar 20 minutos",
+    "footer.tag": "Fuerza controlada.",
+    "footer.copy": "© 2026 Kratos Analytics LLC. Todos los derechos reservados.",
+    title: "Kratos Analytics — Score-as-a-service para cooperativas",
+    desc: "Scorecard con datos transaccionales tipo Bre-B para cooperativas de ahorro y crédito del Llano. Score de riesgo explicable para aprobar, negar o definir monto."
+  },
+  en: {
+    "nav.what": "What we do", "nav.how": "How it works", "nav.score": "Score", "nav.offer": "The offer", "nav.contact": "Contact",
+    "hero.eyebrow": "Kratos Analytics LLC · Score-as-a-service",
+    "hero.title": "Seeing risk where the traditional bureau sees nothing",
+    "hero.sub": "A scorecard on Bre-B-style transactional data for credit unions that lose good business today because the traditional bureau cannot score members with no history.",
+    "hero.cta": "Book 20 minutes", "hero.cta2": "See the Score",
+    "hero.s1": "Credit unions · Llano / Orinoquía, Colombia",
+    "hero.s2": "Explainable score: approve, decline, set the amount",
+    "hero.s3": "We do not lend and we do not take balance-sheet risk",
+    "what.eyebrow": "What we do",
+    "what.title": "Score-as-a-service. The model is the product.",
+    "what.body": "The credit union hands over data it already holds — transactional, sociodemographic, internal payment behaviour — and we return an explainable risk score to approve, decline or set the amount.",
+    "what.body2": "We do not lend, we do not take deposits and we do not carry balance-sheet risk. No product to onboard, no core replacement: a score, plus the drivers behind it.",
+    "what.flow.k": "HOW A DECISION MOVES",
+    "what.step1": "The union sends anonymised data under a processor agreement.",
+    "what.step2": "We fit the scorecard on its own portfolio and report AUC, Gini, KS and PSI.",
+    "what.step3": "The score arrives by API or batch file, with the drivers that moved it.",
+    "what.step4": "The credit committee decides — and can justify the decision to member and regulator.",
+    "data.eyebrow": "What data we use",
+    "data.title": "Four families of signal the union already owns.",
+    "data.c1.t": "Cash flow", "data.c1.b": "Average income, seasonality, volatility.",
+    "data.c2.t": "Bre-B-style transactional behaviour", "data.c2.b": "Frequency, regularity, counterparties.",
+    "data.c3.t": "Internal payment behaviour", "data.c3.b": "Punctuality, prior arrears, use of the credit line.",
+    "data.c4.t": "Sociodemographic", "data.c4.b": "Occupation, value chain, location, membership tenure.",
+    "score.eyebrow": "Score",
+    "score.title": "What the model separates, in numbers.",
+    "score.sub": "A synthetic demo run: an interpretable scorecard, a gradient-boosting challenger, and what the difference means at the approval desk.",
+    "score.t1.k": "SCORECARD · INTERPRETABLE", "score.t1.v": "AUC · Gini 0.48",
+    "score.t1.b": "Points per band, readable by the credit committee. This is the one that gets deployed first.",
+    "score.chart1.l1": "Cash flow", "score.chart1.l2": "Transactional", "score.chart1.l3": "Internal payment", "score.chart1.l4": "Sociodemo.",
+    "score.t2.k": "CHALLENGER · GBM", "score.t2.v": "AUC · Gini 0.74",
+    "score.t2.b": "Gradient boosting sets the ceiling and shows how much signal the simple model leaves on the table.",
+    "score.t3.k": "AT THE APPROVAL DESK", "score.t3.v": "expected arrears at 61% approval · 18.2% with no model",
+    "score.t3.b": "Same volume of approvals, a quarter of the losses — because the ranking, not the cutoff, is doing the work.",
+    "score.dis": "Results on 20,000 synthetic members — methodological demo, not a real portfolio.",
+    "offer.eyebrow": "The offer",
+    "offer.title": "A free proof of concept, on your own portfolio.",
+    "offer.body": "No cost and no commitment: we run the model on the union's anonymised historical portfolio and show, with its real numbers, how much approval can rise without arrears rising.",
+    "offer.body2": "The lift report is yours whether or not you go ahead. If the model does not beat what the union already does, we say so.",
+    "offer.cta": "Book 20 minutes",
+    "offer.f1.k": "WHAT WE NEED",
+    "offer.f1.v": "Anonymised historical credit records with their outcome — who paid and who did not. Nothing that identifies a member.",
+    "offer.f2.k": "WHAT YOU GET BACK",
+    "offer.f2.v": "Discrimination and calibration on your portfolio, approval-versus-arrears curve, and the cutoff we would recommend.",
+    "offer.f3.k": "THEN",
+    "offer.f3.v": "Scoring endpoint or batch file, monitored per run. The union keeps deciding; the model only ranks.",
+    "geo.eyebrow": "Where we operate",
+    "geo.title": "Hyperlocal by design: the Llano and Orinoquía, not all of Colombia.",
+    "geo.body": "We know the farming seasonality, the value chains and the payment cycles of every department we work in — the moat a generic national model cannot replicate.",
+    "how.eyebrow": "How it works",
+    "how.title": "The scoring, explained without jargon.",
+    "how.sub": "You don't need to know models to understand this. Here's how it works, in the order it happens.",
+    "how.q1.t": "What is a score?",
+    "how.q1.b": "A number that summarises, based on real data, how likely someone is to repay a loan on time. It doesn't replace the committee's judgement — it informs it with evidence.",
+    "how.q2.t": "Where does the data come from?",
+    "how.q2.b": "From the credit union itself: its account movements, its internal payment history, basic member data. We don't buy external data or query the bureau — that's how we can score members with no formal credit history.",
+    "how.q3.t": "How is it calculated?",
+    "how.q3.b": "Applicants are grouped into bands (e.g. \"membership under 6 months\") and, using the union's real history, we measure how well each group repays. Bands that repay better add points; bands that repay worse subtract — and every point is documented.",
+    "how.q4.t": "What about the second model, the GBM?",
+    "how.q4.b": "That one isn't used to decide. It's a ceiling test: a more complex model that shows how much signal is in the data that the simple model isn't yet capturing.",
+    "how.q5.t": "What happens after the score?",
+    "how.q5.b": "The credit union sets its own cutoffs (auto-approve above a score, manual review in the middle band, decline below a minimum). The credit committee always has the final word.",
+    "how.gloss.k": "QUICK GLOSSARY",
+    "how.gloss.auc.k": "AUC", "how.gloss.auc.v": "how well the model separates who pays from who doesn't. From 0.5 (a coin flip) to 1.0 (perfect). A useful model is usually between 0.70 and 0.85.",
+    "how.gloss.gini.k": "Gini", "how.gloss.gini.v": "the same idea on a different scale: Gini = 2×AUC − 1.",
+    "how.gloss.ks.k": "KS", "how.gloss.ks.v": "how far apart good and bad payers are at the point of greatest difference.",
+    "how.gloss.psi.k": "PSI", "how.gloss.psi.v": "an early warning: measures whether the model is drifting out of date against reality.",
+    "other.eyebrow": "Also built by us",
+    "other.title": "Rigorous automation, across more than one domain.",
+    "other.body": "Scoring for credit unions is Kratos Analytics' focus. These are other active projects from the same team, held to the same standard of technical rigor and evidence on real data.",
+    "other.c1.t": "AgentRails",
+    "other.c1.b": "AI agent governance: declarative policy, dry-run, an audit ledger and a circuit breaker before an agent executes an action.",
+    "other.c2.t": "Kratos Alpaca",
+    "other.c2.b": "Three algorithmic trading engines (momentum, trend, mean-reversion) on Alpaca Paper Trading, validated with backtests on real 2016–2026 data.",
+    "other.c3.t": "Portfolio advisor",
+    "other.c3.b": "A fundamental-valuation analysis tool for personal investing. Not licensed financial advice — informational support based on transparent rules.",
+    "law.eyebrow": "Data handling",
+    "law.title": "The union keeps ownership and control of its members' data at all times.",
+    "law.body": "Processing under a data-processor agreement, governed by Colombia's Law 1581 of 2012: data anonymised or pseudonymised, encrypted in transit and at rest, and minimised to what the model actually needs.",
+    "law.l1": "Purpose limited to scoring — no resale, no secondary use",
+    "law.l2": "Deletion on request, at the end of the engagement",
+    "law.l3": "Every score traceable to the drivers that produced it",
+    "contact.eyebrow": "Contact",
+    "contact.title": "Bring us the applications you are turning away.",
+    "contact.sub": "Twenty minutes to see whether your portfolio has enough history for a proof of concept. If it does not, we will tell you what to start collecting.",
+    "contact.cta": "Book 20 minutes",
+    "footer.tag": "Controlled force.",
+    "footer.copy": "© 2026 Kratos Analytics LLC. All rights reserved.",
+    title: "Kratos Analytics — Score-as-a-service for credit unions",
+    desc: "A scorecard on Bre-B-style transactional data for credit unions in the Llano region of Colombia. An explainable risk score to approve, decline or set the amount."
+  }
+};
+
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.querySelector('[data-kratos-root]');
+    if (!root) return;
+    this.root = root;
+    const p = this.props || {};
+    const nav = (navigator.language || "es").toLowerCase();
+    this.lang = (p.defaultLang === "es" || p.defaultLang === "en")
+      ? p.defaultLang
+      : (nav.startsWith("en") ? "en" : "es");
+
+    if (p.heroNetworkMotion === false) {
+      root.querySelectorAll('[data-hero-node]').forEach((n) => { n.style.animation = 'none'; n.style.opacity = '.55'; });
+    }
+
+    const video = root.querySelector('[data-hero-video]');
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('loop', '');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.pause();
+        try { video.currentTime = 0.1; } catch (e) {}
+      } else {
+        const play = () => { const r = video.play(); if (r && r.catch) r.catch(() => {}); };
+        play();
+        this.io = new IntersectionObserver((es) => {
+          es.forEach((e) => { if (e.isIntersecting && !document.hidden) play(); else video.pause(); });
+        }, { threshold: 0.01 });
+        this.io.observe(video);
+        this.onVis = () => { if (document.hidden) video.pause(); else play(); };
+        document.addEventListener('visibilitychange', this.onVis);
+      }
+    }
+
+    root.querySelectorAll('[data-lang]').forEach((b) => {
+      b.addEventListener('click', () => this.setLang(b.getAttribute('data-lang')));
+    });
+
+    this.reveal(root);
+    if (this.lang !== 'es') this.setLang(this.lang);
+    else this.setLang('es');
+    setTimeout(() => this.applyHead(), 0);
+    setTimeout(() => this.applyHead(), 400);
+  }
+
+  applyHead() {
+    const t = I18N[this.lang] || I18N.es;
+    document.title = t.title;
+    const md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', t.desc);
+  }
+
+  componentWillUnmount() {
+    this.showAll();
+    if (this.io) this.io.disconnect();
+    if (this.onVis) document.removeEventListener('visibilitychange', this.onVis);
+    if (this.onHide) {
+      window.removeEventListener('pagehide', this.onHide);
+      window.removeEventListener('beforeprint', this.onHide);
+    }
+  }
+
+  reveal(root) {
+    const items = Array.from(root.querySelectorAll('section:not(#top) > div > *, section:not(#top) article'));
+    this.revealed = items;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof IntersectionObserver !== 'function') {
+      items.forEach((el) => this.finishCountUps(el));
+      return;
+    }
+    const show = (el) => {
+      el.style.opacity = '';
+      el.style.transform = '';
+      this.finishCountUps(el, true);
+    };
+    items.forEach((el) => {
+      el.style.willChange = 'opacity, transform';
+      el.style.transition = 'opacity .6s cubic-bezier(.2,.6,.2,1), transform .6s cubic-bezier(.2,.6,.2,1)';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+    });
+    this.rio = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        show(e.target);
+        this.rio.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px 14% 0px', threshold: 0.01 });
+    items.forEach((el) => this.rio.observe(el));
+    this.revealFallback = setTimeout(() => this.showAll(), 900);
+    this.onHide = () => this.showAll();
+    window.addEventListener('pagehide', this.onHide);
+    window.addEventListener('beforeprint', this.onHide);
+  }
+
+  finishCountUps(el, animate) {
+    const targets = el.hasAttribute && el.hasAttribute('data-countup') ? [el] : Array.from(el.querySelectorAll ? el.querySelectorAll('[data-countup]') : []);
+    targets.forEach((n) => animate ? this.countUp(n) : this.setCountFinal(n));
+  }
+
+  setCountFinal(el) {
+    const target = parseFloat(el.getAttribute('data-countup'));
+    if (isNaN(target)) return;
+    const decimals = parseInt(el.getAttribute('data-countup-decimals') || '2', 10);
+    const suffix = el.getAttribute('data-countup-suffix') || '';
+    el.textContent = target.toFixed(decimals) + suffix;
+  }
+
+  countUp(el) {
+    if (el.dataset.countupDone) return;
+    el.dataset.countupDone = '1';
+    const target = parseFloat(el.getAttribute('data-countup'));
+    if (isNaN(target)) return;
+    const decimals = parseInt(el.getAttribute('data-countup-decimals') || '2', 10);
+    const suffix = el.getAttribute('data-countup-suffix') || '';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { this.setCountFinal(el); return; }
+    const dur = 900;
+    const start = performance.now();
+    const step = (now) => {
+      const prog = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - prog, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (prog < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  showAll() {
+    if (this.revealFallback) { clearTimeout(this.revealFallback); this.revealFallback = null; }
+    if (this.rio) { this.rio.disconnect(); this.rio = null; }
+    (this.revealed || []).forEach((el) => {
+      if (el.style.opacity === '0') el.style.transition = 'none';
+      el.style.opacity = '';
+      el.style.transform = '';
+      el.style.willChange = '';
+      this.finishCountUps(el, false);
+    });
+  }
+
+  setLang(lang) {
+    const t = I18N[lang];
+    if (!t) return;
+    this.lang = lang;
+    const root = this.root;
+    document.documentElement.lang = lang === 'es' ? 'es-CO' : 'en';
+    this.applyHead();
+    root.querySelectorAll('[data-i18n]').forEach((el) => {
+      const v = t[el.getAttribute('data-i18n')];
+      if (typeof v === 'string') el.textContent = v;
+    });
+    root.querySelectorAll('[data-lang]').forEach((b) => {
+      const on = b.getAttribute('data-lang') === lang;
+      b.style.background = on ? '#EDEAE3' : 'transparent';
+      b.style.color = on ? '#0D0D0D' : 'rgba(237,234,227,.7)';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+}
+
+</script>
+</body>
+</html>
