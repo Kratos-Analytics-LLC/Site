@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Contacto — Kratos Analytics LLC</title>
+<meta name="description" content="Escríbenos: kratosanalyticsllc@gmail.com. Agenda 20 minutos para hablar de scoring crediticio o de cualquier otro proyecto.">
+<meta property="og:title" content="Contacto — Kratos Analytics LLC">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="icon" href="assets/kratos-favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; background: #0D0D0D; }
+  body { margin: 0; background: #0D0D0D; color: #EDEAE3; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #EDEAE3; text-decoration: none; border-bottom: 1px solid rgba(237,234,227,.28); }
+  a:hover { border-bottom-color: #C9A227; }
+  ::selection { background: #C9A227; color: #0D0D0D; }
+  :focus-visible { outline: 2px solid #C9A227; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<div data-kratos-root="1" style="color:#EDEAE3; min-height:100vh; font-family:Inter,system-ui,sans-serif; display:flex; flex-direction:column;">
+
+  <video data-hero-video muted="{{ true }}" loop="{{ true }}" autoPlay="{{ true }}" playsinline preload="auto" aria-hidden="true" style="position:fixed; inset:0; width:100%; height:100%; object-fit:cover; opacity:.22; filter:grayscale(.7) contrast(1.08) brightness(.75); z-index:-1;">
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4" type="video/mp4">
+  </video>
+
+  <header style="position:sticky; top:0; z-index:60; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px clamp(16px,4vw,48px); background:rgba(13,13,13,.92); backdrop-filter:blur(10px); border-bottom:1px solid #2C2C2A;">
+    <a href="index.html" aria-label="Kratos Analytics" style="display:flex; align-items:center; gap:12px; border:0;">
+      <img src="assets/kratos-mark-mono-ceniza.svg" alt="Kratos Analytics" width="30" height="30" style="display:block; width:30px; height:30px;">
+      <span style="display:flex; flex-direction:column; line-height:1;">
+        <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; letter-spacing:.08em;">KRATOS</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.26em; color:rgba(237,234,227,.6); margin-top:3px;">ANALYTICS</span>
+      </span>
+    </a>
+    <nav style="display:flex; align-items:center; gap:clamp(12px,2.2vw,30px); flex-wrap:wrap; justify-content:flex-end;">
+      <a href="index.html" data-i18n="nav.home" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">Inicio</a>
+      <a href="score.html" data-i18n="nav.score" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">Score</a>
+      <a href="proyectos.html" data-i18n="nav.projects" style="font-size:13px; border:0; color:rgba(237,234,227,.72);">Proyectos</a>
+      <a href="contacto.html" data-i18n="nav.contact" style="font-size:13px; border:0; color:#EDEAE3;">Contacto</a>
+      <div role="group" aria-label="Idioma" style="display:flex; align-items:center; border:1px solid #2C2C2A; border-radius:2px; overflow:hidden;">
+        <button type="button" data-lang="es" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:#EDEAE3; color:#0D0D0D; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">ES</button>
+        <button type="button" data-lang="en" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:transparent; color:rgba(237,234,227,.7); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <section id="contact" style="background:rgba(13,13,13,.94); flex:1; display:flex; align-items:center;">
+    <div style="max-width:840px; margin:0 auto; padding:clamp(56px,10vw,120px) clamp(20px,5vw,64px); text-align:center;">
+      <p data-i18n="contact.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Contacto</p>
+      <h1 data-i18n="contact.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.024em; font-size:clamp(30px,4.6vw,56px); line-height:1.08; margin:0 0 22px;">Tráenos las solicitudes que hoy estás negando.</h1>
+      <p data-i18n="contact.sub" style="font-size:16.5px; line-height:1.62; color:rgba(237,234,227,.76); margin:0 0 40px; max-width:56ch; margin-left:auto; margin-right:auto;">Veinte minutos para ver si tu caso tiene lo que necesitamos — sea scoring crediticio, gobernanza de agentes o algo distinto que quieras resolver con datos.</p>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:20px;">
+        <a href="mailto:kratosanalyticsllc@gmail.com?subject=Kratos%20Analytics%20-%2020%20minutos" data-i18n="contact.cta" style="display:inline-block; padding:16px 28px; background:#EDEAE3; color:#0D0D0D; border:1px solid #EDEAE3; border-radius:2px; font-weight:500; font-size:15px;" style-hover="border-color:#C9A227;">Agendar 20 minutos</a>
+        <a href="mailto:kratosanalyticsllc@gmail.com" style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.02em;">kratosanalyticsllc@gmail.com</a>
+        <a href="tel:+15717995315" style="font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.02em;">+1 571 799 5315</a>
+      </div>
+      <p style="margin:40px 0 0; font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.9; color:rgba(237,234,227,.6);">Alejandro Calderón<br>Kratos Analytics LLC</p>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #2C2C2A; background:rgba(13,13,13,.94);">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(36px,5vw,64px) clamp(20px,5vw,64px); display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:28px;">
+      <div style="display:flex; align-items:flex-start; gap:14px;">
+        <img src="assets/kratos-mark-mono-ceniza.svg" alt="" width="32" height="32" style="display:block; width:32px; height:32px; opacity:.9;">
+        <div>
+          <p style="margin:0 0 4px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; letter-spacing:.08em;">KRATOS ANALYTICS</p>
+          <p data-i18n="footer.tag" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.6);">Fuerza controlada.</p>
+        </div>
+      </div>
+      <div style="display:grid; gap:8px; font-size:13.5px; color:rgba(237,234,227,.7);">
+        <a href="index.html" data-i18n="nav.home" style="border:0;">Inicio</a>
+        <a href="score.html" data-i18n="nav.score" style="border:0;">Score</a>
+        <a href="proyectos.html" data-i18n="nav.projects" style="border:0;">Proyectos</a>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:14px;">
+        <div role="group" aria-label="Idioma" style="display:flex; align-items:center; border:1px solid #2C2C2A; border-radius:2px; overflow:hidden;">
+          <button type="button" data-lang="es" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:#EDEAE3; color:#0D0D0D; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">ES</button>
+          <button type="button" data-lang="en" style="appearance:none; border:0; cursor:pointer; padding:7px 11px; background:transparent; color:rgba(237,234,227,.7); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em;">EN</button>
+        </div>
+        <p data-i18n="footer.copy" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:rgba(237,234,227,.45);">© 2026 Kratos Analytics LLC. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;es&quot;,&quot;en&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Language&quot;}}">
+const I18N = {
+  es: {
+    "nav.home": "Inicio", "nav.score": "Score", "nav.projects": "Proyectos", "nav.contact": "Contacto",
+    "contact.eyebrow": "Contacto",
+    "contact.title": "Tráenos las solicitudes que hoy estás negando.",
+    "contact.sub": "Veinte minutos para ver si tu caso tiene lo que necesitamos — sea scoring crediticio, gobernanza de agentes o algo distinto que quieras resolver con datos.",
+    "contact.cta": "Agendar 20 minutos",
+    "footer.tag": "Fuerza controlada.",
+    "footer.copy": "© 2026 Kratos Analytics LLC. Todos los derechos reservados.",
+    title: "Contacto — Kratos Analytics LLC",
+    desc: "Escríbenos: kratosanalyticsllc@gmail.com. Agenda 20 minutos para hablar de scoring crediticio o de cualquier otro proyecto."
+  },
+  en: {
+    "nav.home": "Home", "nav.score": "Score", "nav.projects": "Projects", "nav.contact": "Contact",
+    "contact.eyebrow": "Contact",
+    "contact.title": "Bring us the applications you are turning away.",
+    "contact.sub": "Twenty minutes to see if your case is a fit — credit scoring, agent governance, or something else you want to solve with data.",
+    "contact.cta": "Book 20 minutes",
+    "footer.tag": "Controlled force.",
+    "footer.copy": "© 2026 Kratos Analytics LLC. All rights reserved.",
+    title: "Contact — Kratos Analytics LLC",
+    desc: "Reach out: kratosanalyticsllc@gmail.com. Book 20 minutes to talk about credit scoring or any other project."
+  }
+};
+
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.querySelector('[data-kratos-root]');
+    if (!root) return;
+    this.root = root;
+    const p = this.props || {};
+    const nav = (navigator.language || "es").toLowerCase();
+    this.lang = (p.defaultLang === "es" || p.defaultLang === "en")
+      ? p.defaultLang
+      : (nav.startsWith("en") ? "en" : "es");
+
+    const video = root.querySelector('[data-hero-video]');
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('loop', '');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.pause();
+        try { video.currentTime = 0.1; } catch (e) {}
+      } else {
+        const play = () => { const r = video.play(); if (r && r.catch) r.catch(() => {}); };
+        play();
+        this.io = new IntersectionObserver((es) => {
+          es.forEach((e) => { if (e.isIntersecting && !document.hidden) play(); else video.pause(); });
+        }, { threshold: 0.01 });
+        this.io.observe(video);
+        this.onVis = () => { if (document.hidden) video.pause(); else play(); };
+        document.addEventListener('visibilitychange', this.onVis);
+      }
+    }
+
+    root.querySelectorAll('[data-lang]').forEach((b) => {
+      b.addEventListener('click', () => this.setLang(b.getAttribute('data-lang')));
+    });
+
+    if (this.lang !== 'es') this.setLang(this.lang);
+    else this.setLang('es');
+    setTimeout(() => this.applyHead(), 0);
+    setTimeout(() => this.applyHead(), 400);
+  }
+
+  applyHead() {
+    const t = I18N[this.lang] || I18N.es;
+    document.title = t.title;
+    const md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', t.desc);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.onVis) document.removeEventListener('visibilitychange', this.onVis);
+  }
+
+  setLang(lang) {
+    const t = I18N[lang];
+    if (!t) return;
+    this.lang = lang;
+    const root = this.root;
+    document.documentElement.lang = lang === 'es' ? 'es-CO' : 'en';
+    this.applyHead();
+    root.querySelectorAll('[data-i18n]').forEach((el) => {
+      const v = t[el.getAttribute('data-i18n')];
+      if (typeof v === 'string') el.textContent = v;
+    });
+    root.querySelectorAll('[data-lang]').forEach((b) => {
+      const on = b.getAttribute('data-lang') === lang;
+      b.style.background = on ? '#EDEAE3' : 'transparent';
+      b.style.color = on ? '#0D0D0D' : 'rgba(237,234,227,.7)';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+}
+
+</script>
+</body>
+</html>
