@@ -26,11 +26,11 @@
   a:hover { border-bottom-color: #C9A227; }
   ::selection { background: #C9A227; color: #0D0D0D; }
   :focus-visible { outline: 2px solid #C9A227; outline-offset: 3px; }
-  @keyframes kratos-pulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
-  @keyframes kratos-drift { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-16px,12px) scale(1.015); } }
+  @keyframes kratos-pulse { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+  @keyframes kratos-drift { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-18px,14px) scale(1.02); } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    [data-hero-node] { animation: none !important; opacity: .55 !important; }
+    [data-hero-node] { animation: none !important; opacity: .6 !important; }
     [data-hero-net] { animation: none !important; }
   }
 </style>
@@ -38,8 +38,8 @@
 
 <div data-kratos-root="1" style="color:#EDEAE3; min-height:100vh; font-family:Inter,system-ui,sans-serif; display:flex; flex-direction:column;">
 
-  <svg data-hero-net aria-hidden="true" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" style="position:fixed; inset:0; width:100%; height:100%; opacity:.8; mix-blend-mode:screen; z-index:-1; pointer-events:none; animation:kratos-drift 26s ease-in-out infinite; transform-origin:center;">
-    <g stroke="#EDEAE3" stroke-opacity=".22" stroke-width="1">
+  <svg data-hero-net aria-hidden="true" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" style="position:fixed; inset:0; width:100%; height:100%; opacity:.92; mix-blend-mode:screen; z-index:-1; pointer-events:none; animation:kratos-drift 26s ease-in-out infinite; transform-origin:center;">
+    <g stroke="#EDEAE3" stroke-opacity=".3" stroke-width="1">
       <line x1="100" y1="80" x2="260" y2="160"></line>
       <line x1="260" y1="160" x2="200" y2="300"></line>
       <line x1="260" y1="160" x2="380" y2="220"></line>
@@ -56,18 +56,18 @@
       <line x1="860" y1="280" x2="1040" y2="320"></line>
     </g>
     <g fill="#EDEAE3">
-      <circle data-hero-node="1" cx="100" cy="80" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:0s;"></circle>
-      <circle data-hero-node="1" cx="260" cy="160" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.3s;"></circle>
-      <circle data-hero-node="1" cx="200" cy="300" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.6s;"></circle>
-      <circle data-hero-node="1" cx="380" cy="220" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.9s;"></circle>
-      <circle data-hero-node="1" cx="480" cy="90" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.2s;"></circle>
-      <circle data-hero-node="1" cx="620" cy="190" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.5s;"></circle>
-      <circle data-hero-node="1" cx="560" cy="340" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.8s;"></circle>
-      <circle data-hero-node="1" cx="760" cy="140" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.1s;"></circle>
-      <circle data-hero-node="1" cx="860" cy="280" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.4s;"></circle>
-      <circle data-hero-node="1" cx="980" cy="110" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.7s;"></circle>
-      <circle data-hero-node="1" cx="1040" cy="320" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:3s;"></circle>
-      <circle data-hero-node="1" cx="1120" cy="180" r="3.5" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:3.3s;"></circle>
+      <circle data-hero-node="1" cx="100" cy="80" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:0s;"></circle>
+      <circle data-hero-node="1" cx="260" cy="160" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.3s;"></circle>
+      <circle data-hero-node="1" cx="200" cy="300" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.6s;"></circle>
+      <circle data-hero-node="1" cx="380" cy="220" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:.9s;"></circle>
+      <circle data-hero-node="1" cx="480" cy="90" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.2s;"></circle>
+      <circle data-hero-node="1" cx="620" cy="190" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.5s;"></circle>
+      <circle data-hero-node="1" cx="560" cy="340" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:1.8s;"></circle>
+      <circle data-hero-node="1" cx="760" cy="140" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.1s;"></circle>
+      <circle data-hero-node="1" cx="860" cy="280" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.4s;"></circle>
+      <circle data-hero-node="1" cx="980" cy="110" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:2.7s;"></circle>
+      <circle data-hero-node="1" cx="1040" cy="320" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:3s;"></circle>
+      <circle data-hero-node="1" cx="1120" cy="180" r="4" style="animation:kratos-pulse 3.6s ease-in-out infinite; animation-delay:3.3s;"></circle>
     </g>
   </svg>
 
@@ -91,7 +91,7 @@
     </nav>
   </header>
 
-  <section id="contact" style="background:rgba(13,13,13,.94); flex:1; display:flex; align-items:center;">
+  <section id="contact" style="background:rgba(13,13,13,.55); flex:1; display:flex; align-items:center;">
     <div style="max-width:840px; margin:0 auto; padding:clamp(56px,10vw,120px) clamp(20px,5vw,64px); text-align:center;">
       <p data-i18n="contact.eyebrow" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(237,234,227,.55); margin:0 0 18px;">Contacto</p>
       <h1 data-i18n="contact.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.024em; font-size:clamp(30px,4.6vw,56px); line-height:1.08; margin:0 0 22px;">Tráenos las solicitudes que hoy estás negando.</h1>
@@ -105,7 +105,7 @@
     </div>
   </section>
 
-  <footer style="border-top:1px solid #2C2C2A; background:rgba(13,13,13,.94);">
+  <footer style="border-top:1px solid #2C2C2A; background:rgba(13,13,13,.82);">
     <div style="max-width:1200px; margin:0 auto; padding:clamp(36px,5vw,64px) clamp(20px,5vw,64px); display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:28px;">
       <div style="display:flex; align-items:flex-start; gap:14px;">
         <img src="assets/kratos-mark-mono-ceniza.svg" alt="" width="32" height="32" style="display:block; width:32px; height:32px; opacity:.9;">
@@ -168,29 +168,6 @@ class Component extends DCLogic {
       ? p.defaultLang
       : (nav.startsWith("en") ? "en" : "es");
 
-    const video = root.querySelector('[data-hero-video]');
-    if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.setAttribute('muted', '');
-      video.setAttribute('loop', '');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        video.pause();
-        try { video.currentTime = 0.1; } catch (e) {}
-      } else {
-        const play = () => { const r = video.play(); if (r && r.catch) r.catch(() => {}); };
-        play();
-        this.io = new IntersectionObserver((es) => {
-          es.forEach((e) => { if (e.isIntersecting && !document.hidden) play(); else video.pause(); });
-        }, { threshold: 0.01 });
-        this.io.observe(video);
-        this.onVis = () => { if (document.hidden) video.pause(); else play(); };
-        document.addEventListener('visibilitychange', this.onVis);
-      }
-    }
-
     root.querySelectorAll('[data-lang]').forEach((b) => {
       b.addEventListener('click', () => this.setLang(b.getAttribute('data-lang')));
     });
@@ -206,11 +183,6 @@ class Component extends DCLogic {
     document.title = t.title;
     const md = document.querySelector('meta[name="description"]');
     if (md) md.setAttribute('content', t.desc);
-  }
-
-  componentWillUnmount() {
-    if (this.io) this.io.disconnect();
-    if (this.onVis) document.removeEventListener('visibilitychange', this.onVis);
   }
 
   setLang(lang) {
@@ -232,7 +204,6 @@ class Component extends DCLogic {
     });
   }
 }
-
 </script>
 </body>
 </html>
