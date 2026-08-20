@@ -120,7 +120,7 @@
         <div>
           <h2 data-i18n="what.title" style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.022em; font-size:clamp(28px,3.8vw,46px); line-height:1.1; margin:0 0 20px; max-width:22ch;">Score-as-a-service. El modelo es el producto.</h2>
           <p data-i18n="what.body" style="font-size:16.5px; line-height:1.62; color:rgba(237,234,227,.8); margin:0 0 18px; max-width:56ch;">La entidad entrega datos que ya posee —transaccionales, sociodemográficos, comportamiento de pago interno— y devolvemos un score de riesgo explicable para aprobar, negar o definir monto.</p>
-          <p data-i18n="what.body2" style="font-size:15px; line-height:1.62; color:rgba(237,234,227,.6); margin:0; max-width:56ch;">No prestamos, no captamos y no asumimos riesgo de balance. Sin producto que implementar ni core que cambiar: un score y los factores que lo sustentan.</p>
+          <p data-i18n="what.body2" style="font-size:15px; line-height:1.62; color:rgba(237,234,227,.6); margin:0; max-width:56ch;">No prestamos, no captamos y no asumimos riesgo de balance. El scorecard es el método de puntos que construimos sobre los datos de la entidad; el score es el número que ese método le asigna a cada persona. Sin producto que implementar ni core que cambiar: un score y los factores que lo sustentan.</p>
         </div>
         <div style="border:1px solid #2C2C2A; border-radius:2px; padding:clamp(22px,2.6vw,34px); background:rgba(13,13,13,.7);">
           <p data-i18n="what.flow.k" style="margin:0 0 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">CÓMO SE MUEVE UNA DECISIÓN</p>
@@ -131,7 +131,7 @@
             </li>
             <li style="display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; padding-top:16px; border-top:1px solid #2C2C2A;">
               <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.45);">02</span>
-              <span data-i18n="what.step2" style="font-size:14.5px; line-height:1.55; color:rgba(237,234,227,.86);">Ajustamos el scorecard sobre su propia cartera y reportamos AUC, Gini, KS y PSI.</span>
+              <span data-i18n="what.step2" style="font-size:14.5px; line-height:1.55; color:rgba(237,234,227,.86);">Ajustamos el scorecard sobre su propia cartera y reportamos las métricas de calidad del modelo (explicadas más abajo).</span>
             </li>
             <li style="display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; padding-top:16px; border-top:1px solid #2C2C2A;">
               <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(237,234,227,.45);">03</span>
@@ -491,10 +491,10 @@ const I18N = {
     "what.eyebrow": "Qué hacemos",
     "what.title": "Score-as-a-service. El modelo es el producto.",
     "what.body": "La entidad entrega datos que ya posee —transaccionales, sociodemográficos, comportamiento de pago interno— y devolvemos un score de riesgo explicable para aprobar, negar o definir monto.",
-    "what.body2": "No prestamos, no captamos y no asumimos riesgo de balance. Sin producto que implementar ni core que cambiar: un score y los factores que lo sustentan.",
+    "what.body2": "No prestamos, no captamos y no asumimos riesgo de balance. El scorecard es el método de puntos que construimos sobre los datos de la entidad; el score es el número que ese método le asigna a cada persona. Sin producto que implementar ni core que cambiar: un score y los factores que lo sustentan.",
     "what.flow.k": "CÓMO SE MUEVE UNA DECISIÓN",
     "what.step1": "La entidad envía datos anonimizados bajo acuerdo de encargado.",
-    "what.step2": "Ajustamos el scorecard sobre su propia cartera y reportamos AUC, Gini, KS y PSI.",
+    "what.step2": "Ajustamos el scorecard sobre su propia cartera y reportamos las métricas de calidad del modelo (explicadas más abajo).",
     "what.step3": "El score llega por API o archivo por lotes, con los factores que lo movieron.",
     "what.step4": "El comité de crédito decide — y puede justificar la decisión ante el asociado y el regulador.",
     "data.eyebrow": "Qué datos usamos",
@@ -598,10 +598,10 @@ const I18N = {
     "what.eyebrow": "What we do",
     "what.title": "Score-as-a-service. The model is the product.",
     "what.body": "The credit union hands over data it already holds — transactional, sociodemographic, internal payment behaviour — and we return an explainable risk score to approve, decline or set the amount.",
-    "what.body2": "We do not lend, we do not take deposits and we do not carry balance-sheet risk. No product to onboard, no core replacement: a score, plus the drivers behind it.",
+    "what.body2": "We do not lend, we do not take deposits and we do not carry balance-sheet risk. The scorecard is the points-based method we build on the union's data; the score is the number that method assigns to each person. No product to onboard, no core replacement: a score, plus the drivers behind it.",
     "what.flow.k": "HOW A DECISION MOVES",
     "what.step1": "The credit union sends anonymized data under a data-processing agreement.",
-    "what.step2": "We fit the scorecard on their own portfolio and report AUC, Gini, KS and PSI.",
+    "what.step2": "We fit the scorecard on their own portfolio and report the model's quality metrics (explained further down).",
     "what.step3": "The score arrives via API or batch file, with the drivers that moved it.",
     "what.step4": "The credit committee decides — and can justify it to the member and the regulator.",
     "data.eyebrow": "What data we use",
