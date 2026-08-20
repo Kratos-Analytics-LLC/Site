@@ -210,6 +210,10 @@
           <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.gini.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">Gini</b> — <span data-i18n="how.gloss.gini.v">la métrica estándar en riesgo crediticio. Transformación directa del AUC (Gini = 2×AUC − 1), en escala de 0 a 1. Scorecard: 0,48. Challenger GBM: 0,74.</span></p>
           <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.ks.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">KS</b> — <span data-i18n="how.gloss.ks.v">estadístico de Kolmogorov-Smirnov. Se ordenan todos los solicitantes por score y se comparan las curvas acumuladas de buenos y malos pagadores; KS es la distancia máxima entre ambas, en el mejor punto de corte. Nuestro scorecard: 0,36.</span></p>
           <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.psi.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">PSI</b> — <span data-i18n="how.gloss.psi.v">Population Stability Index. Compara la distribución de scores de hoy contra la del entrenamiento original. Si sube (más de 0,25 suele ser la alarma), el perfil de solicitantes cambió — una crisis regional, un giro en la política de la entidad — y el modelo necesita recalibrarse antes de fallar en silencio.</span></p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.odds.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">Odds</b> — <span data-i18n="how.gloss.odds.v">la razón entre la probabilidad de pagar y la de no pagar. Si 9 de cada 10 personas con un perfil pagan, sus odds son 9 a 1. El scorecard traduce puntos directamente a esta razón — por eso "cada 20 puntos duplican" las odds de pago.</span></p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.woe.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">WOE</b> — <span data-i18n="how.gloss.woe.v">Weight of Evidence. La medida que convierte cada rango de una variable (ej. "antigüedad 12-24 meses") en un peso numérico, comparando cuántos buenos y malos pagadores cayeron en ese rango dentro de la historia real de la entidad. Es el paso intermedio entre el dato crudo y el punto que ve el comité.</span></p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.cutoff.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">Punto de corte</b> — <span data-i18n="how.gloss.cutoff.v">el puntaje mínimo a partir del cual se aprueba automático, se revisa manual o se niega. No lo fijamos nosotros: la entidad lo define según su propia tolerancia al riesgo (ver "Cómo se lee el score" más abajo).</span></p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:rgba(237,234,227,.78);"><b data-i18n="how.gloss.lift.k" style="color:#EDEAE3; font-family:'IBM Plex Mono',monospace;">Lift</b> — <span data-i18n="how.gloss.lift.v">cuánto mejor ordena el modelo a los solicitantes frente a no usar ningún modelo. Un lift de 4x en el mejor 10% significa que ese grupo tiene 4 veces menos mora que una selección al azar del mismo tamaño.</span></p>
         </div>
       </div>
 
@@ -348,17 +352,28 @@
           <p data-i18n="score.t3.k" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.62);">EN LA MESA DE APROBACIÓN</p>
           <p data-countup="4.4" data-countup-decimals="1" data-countup-suffix="%" style="margin:6px 0 0; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(44px,5.6vw,64px); line-height:.92; letter-spacing:-.03em; font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">4.4%</p>
           <p data-i18n="score.t3.v" style="margin:0; font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(237,234,227,.68); font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1;">mora esperada al 61% de aprobación · 18,2% sin modelo</p>
-          <svg viewBox="0 0 300 150" aria-hidden="true" style="width:100%; height:auto; margin-top:6px;">
-            <line x1="20" y1="10" x2="20" y2="130" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
-            <line x1="20" y1="130" x2="290" y2="130" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
-            <path d="M20,124 C80,120 140,108 180,100 C220,92 260,55 290,18" fill="none" stroke="#EDEAE3" stroke-width="2"></path>
-            <line x1="180" y1="100" x2="180" y2="130" stroke="#C9A227" stroke-width="1" stroke-dasharray="2,3"></line>
-            <line x1="20" y1="100" x2="180" y2="100" stroke="#C9A227" stroke-width="1" stroke-dasharray="2,3"></line>
-            <circle cx="180" cy="100" r="4" fill="none" stroke="#C9A227" stroke-width="1.4"></circle>
-            <text x="184" y="96" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#C9A227">61% / 4,4%</text>
+          <svg viewBox="0 0 320 178" aria-hidden="true" style="width:100%; height:auto; margin-top:6px;">
+            <line x1="40" y1="20" x2="40" y2="132" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
+            <line x1="40" y1="132" x2="300" y2="132" stroke="rgba(237,234,227,.2)" stroke-width="1"></line>
+            <line x1="40" y1="30" x2="300" y2="30" stroke="rgba(237,234,227,.32)" stroke-width="1" stroke-dasharray="2,3"></line>
+            <text data-i18n="score.chart3.baseline" x="300" y="26" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(237,234,227,.55)">18,2% sin modelo</text>
+            <path d="M40,132 C110,130 160,122 199,106 C240,90 280,50 300,30" fill="none" stroke="#EDEAE3" stroke-width="2"></path>
+            <line x1="199" y1="30" x2="199" y2="106" stroke="#C9A227" stroke-width="1" stroke-dasharray="2,3"></line>
+            <line x1="40" y1="106" x2="199" y2="106" stroke="#C9A227" stroke-width="1" stroke-dasharray="2,3"></line>
+            <circle cx="199" cy="106" r="4" fill="#0D0D0D" stroke="#C9A227" stroke-width="1.6"></circle>
+            <text x="203" y="103" font-family="'IBM Plex Mono',monospace" font-size="10" font-weight="700" fill="#C9A227">4,4%</text>
+            <line x1="199" y1="132" x2="199" y2="138" stroke="rgba(237,234,227,.4)" stroke-width="1"></line>
+            <text x="199" y="150" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#EDEAE3">61%</text>
+            <text x="40" y="150" text-anchor="start" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="rgba(237,234,227,.45)">0%</text>
+            <text x="300" y="150" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="rgba(237,234,227,.45)">100%</text>
+            <text data-i18n="score.chart3.xaxis" x="170" y="166" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="rgba(237,234,227,.5)">% de solicitudes aprobadas, ordenadas por score</text>
           </svg>
           <p data-i18n="score.t3.b" style="margin:auto 0 0; padding-top:18px; border-top:1px solid #2C2C2A; font-size:14px; line-height:1.6; color:rgba(237,234,227,.7);">El mismo volumen de aprobaciones con una cuarta parte de la pérdida: el trabajo lo hace el ordenamiento, no el corte.</p>
         </article>
+      </div>
+      <div style="border:1px solid #2C2C2A; border-radius:2px; padding:clamp(22px,2.6vw,32px); margin-top:clamp(18px,2vw,26px); background:rgba(13,13,13,.4);">
+        <p data-i18n="score.explain.k" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:rgba(237,234,227,.55);">QUÉ SIGNIFICA ESTO EN LA PRÁCTICA</p>
+        <p data-i18n="score.explain.b" style="margin:0; font-size:14.5px; line-height:1.68; color:rgba(237,234,227,.8); max-width:74ch;">El score no decide aprobar menos gente — decide a quién aprobar primero. Si hoy la entidad aprueba al 61% de las solicitudes casi al azar, la mora de ese grupo se parece al promedio histórico de la cartera: 18,2%. Si aprueba ese mismo 61%, pero elige a los que el score marca como más propensos a pagar, la mora de ese grupo baja a 4,4% — casi una cuarta parte. El volumen de aprobación no cambia; lo que cambia es a quién se le dice que sí dentro de ese volumen. Por eso decimos que "el trabajo lo hace el ordenamiento, no el corte": la ganancia no viene de aprobar menos gente, sino de ordenar mejor a quién aprobar primero.</p>
       </div>
       <p data-i18n="score.dis" style="margin:24px 0 0; font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.7; color:rgba(237,234,227,.5); max-width:70ch;">Resultados sobre 20.000 asociados sintéticos — demo metodológico, no cartera real.</p>
     </div>
@@ -512,7 +527,11 @@ const I18N = {
     "score.t2.k": "CHALLENGER · GBM", "score.t2.v": "AUC · Gini 0,74",
     "score.t2.b": "Gradient boosting marca el techo y muestra cuánta señal deja sobre la mesa el modelo simple.",
     "score.t3.k": "EN LA MESA DE APROBACIÓN", "score.t3.v": "mora esperada al 61% de aprobación · 18,2% sin modelo",
+    "score.chart3.baseline": "18,2% sin modelo",
+    "score.chart3.xaxis": "% de solicitudes aprobadas, ordenadas por score",
     "score.t3.b": "El mismo volumen de aprobaciones con una cuarta parte de la pérdida: el trabajo lo hace el ordenamiento, no el corte.",
+    "score.explain.k": "QUÉ SIGNIFICA ESTO EN LA PRÁCTICA",
+    "score.explain.b": "El score no decide aprobar menos gente — decide a quién aprobar primero. Si hoy la entidad aprueba al 61% de las solicitudes casi al azar, la mora de ese grupo se parece al promedio histórico de la cartera: 18,2%. Si aprueba ese mismo 61%, pero elige a los que el score marca como más propensos a pagar, la mora de ese grupo baja a 4,4% — casi una cuarta parte. El volumen de aprobación no cambia; lo que cambia es a quién se le dice que sí dentro de ese volumen. Por eso decimos que \"el trabajo lo hace el ordenamiento, no el corte\": la ganancia no viene de aprobar menos gente, sino de ordenar mejor a quién aprobar primero.",
     "score.dis": "Resultados sobre 20.000 asociados sintéticos — demo metodológico, no cartera real.",
     "offer.eyebrow": "La oferta",
     "offer.title": "Una prueba de concepto gratis, sobre tu propia cartera.",
@@ -546,6 +565,10 @@ const I18N = {
     "how.gloss.gini.k": "Gini", "how.gloss.gini.v": "la métrica estándar en riesgo crediticio. Transformación directa del AUC (Gini = 2×AUC − 1), en escala de 0 a 1. Scorecard: 0,48. Challenger GBM: 0,74.",
     "how.gloss.ks.k": "KS", "how.gloss.ks.v": "estadístico de Kolmogorov-Smirnov. Se ordenan todos los solicitantes por score y se comparan las curvas acumuladas de buenos y malos pagadores; KS es la distancia máxima entre ambas, en el mejor punto de corte. Nuestro scorecard: 0,36.",
     "how.gloss.psi.k": "PSI", "how.gloss.psi.v": "Population Stability Index. Compara la distribución de scores de hoy contra la del entrenamiento original. Si sube (más de 0,25 suele ser la alarma), el perfil de solicitantes cambió — una crisis regional, un giro en la política de la entidad — y el modelo necesita recalibrarse antes de fallar en silencio.",
+    "how.gloss.odds.k": "Odds", "how.gloss.odds.v": "la razón entre la probabilidad de pagar y la de no pagar. Si 9 de cada 10 personas con un perfil pagan, sus odds son 9 a 1. El scorecard traduce puntos directamente a esta razón — por eso \"cada 20 puntos duplican\" las odds de pago.",
+    "how.gloss.woe.k": "WOE", "how.gloss.woe.v": "Weight of Evidence. La medida que convierte cada rango de una variable (ej. \"antigüedad 12-24 meses\") en un peso numérico, comparando cuántos buenos y malos pagadores cayeron en ese rango dentro de la historia real de la entidad. Es el paso intermedio entre el dato crudo y el punto que ve el comité.",
+    "how.gloss.cutoff.k": "Punto de corte", "how.gloss.cutoff.v": "el puntaje mínimo a partir del cual se aprueba automático, se revisa manual o se niega. No lo fijamos nosotros: la entidad lo define según su propia tolerancia al riesgo (ver \"Cómo se lee el score\" más abajo).",
+    "how.gloss.lift.k": "Lift", "how.gloss.lift.v": "cuánto mejor ordena el modelo a los solicitantes frente a no usar ningún modelo. Un lift de 4x en el mejor 10% significa que ese grupo tiene 4 veces menos mora que una selección al azar del mismo tamaño.",
     "how.case.eyebrow": "UN CASO, DE PRINCIPIO A FIN",
     "how.case.intro": "Camila, 34 años, agricultora, socia de una entidad del Meta desde hace 22 meses, solicita un crédito de $4.000.000. Estas son las 12 señales reales que el scorecard mide para ella (datos del demo metodológico), agrupadas por familia:",
     "how.case.h1": "VARIABLE", "how.case.h2": "EL DATO DE CAMILA", "how.case.h3": "PUNTOS",
@@ -619,7 +642,11 @@ const I18N = {
     "score.t2.k": "CHALLENGER · GBM", "score.t2.v": "AUC · Gini 0.74",
     "score.t2.b": "Gradient boosting marks the ceiling and shows how much signal the simple model leaves on the table.",
     "score.t3.k": "AT THE APPROVAL TABLE", "score.t3.v": "expected delinquency at 61% approval · 18.2% without the model",
+    "score.chart3.baseline": "18.2% no model",
+    "score.chart3.xaxis": "% of applications approved, ranked by score",
     "score.t3.b": "The same approval volume at a quarter of the loss: the work is done by ranking, not the cutoff.",
+    "score.explain.k": "WHAT THIS MEANS IN PRACTICE",
+    "score.explain.b": "The score doesn't decide to approve fewer people — it decides who to approve first. If the credit union approves 61% of applications today, roughly at random, delinquency in that group looks like the portfolio's historical average: 18.2%. If it approves that same 61%, but picks the ones the score flags as most likely to pay, delinquency in that group drops to 4.4% — almost a quarter. The approval volume doesn't change; what changes is who gets the yes within that volume. That's what we mean by \"the work is done by ranking, not the cutoff\": the gain doesn't come from approving fewer people, it comes from ranking who to approve first.",
     "score.dis": "Results on 20,000 synthetic members — a methodological demo, not a real portfolio.",
     "offer.eyebrow": "The offer",
     "offer.title": "A free proof of concept, on your own portfolio.",
@@ -653,6 +680,10 @@ const I18N = {
     "how.gloss.gini.k": "Gini", "how.gloss.gini.v": "the standard metric in credit risk. A direct transform of AUC (Gini = 2×AUC − 1), on a 0-to-1 scale. Scorecard: 0.48. Challenger GBM: 0.74.",
     "how.gloss.ks.k": "KS", "how.gloss.ks.v": "Kolmogorov-Smirnov statistic. Applicants are ranked by score and the cumulative curves of good and bad payers are compared; KS is the maximum distance between them, at the best cutoff point. Our scorecard: 0.36.",
     "how.gloss.psi.k": "PSI", "how.gloss.psi.v": "Population Stability Index. Compares today's score distribution against the original training distribution. If it rises (above 0.25 is typically the alarm), the applicant profile has shifted — a regional shock, a change in the union's policy — and the model needs recalibrating before it starts failing silently.",
+    "how.gloss.odds.k": "Odds", "how.gloss.odds.v": "the ratio between the probability of paying and the probability of not paying. If 9 out of 10 people with a given profile pay, their odds are 9 to 1. The scorecard translates points directly into this ratio — that's why \"every 20 points doubles\" the odds of paying.",
+    "how.gloss.woe.k": "WOE", "how.gloss.woe.v": "Weight of Evidence. The measure that turns each band of a variable (e.g. \"tenure 12-24 months\") into a numeric weight, by comparing how many good and bad payers fell into that band in the union's real history. It's the intermediate step between the raw data and the point the committee sees.",
+    "how.gloss.cutoff.k": "Cutoff", "how.gloss.cutoff.v": "the minimum score above which an application is auto-approved, manually reviewed, or declined. We don't set it: the credit union defines it based on its own risk tolerance (see \"How to read the score\" below).",
+    "how.gloss.lift.k": "Lift", "how.gloss.lift.v": "how much better the model ranks applicants compared to using no model at all. A 4x lift in the top 10% means that group has 4 times less delinquency than a random selection of the same size.",
     "how.case.eyebrow": "ONE CASE, START TO FINISH",
     "how.case.intro": "Camila, 34, a farmer, a member of a credit union in Meta for 22 months, applies for a $4,000,000 COP loan. These are the 12 real signals the scorecard measures for her (data from the methodological demo), grouped by family:",
     "how.case.h1": "VARIABLE", "how.case.h2": "CAMILA'S DATA", "how.case.h3": "POINTS",
